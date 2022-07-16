@@ -6,33 +6,27 @@ body {
   margin: 0px;
 }
 
-#title {
-  display: flex;
-  justify-content: center;
-  color: white;
-  margin-top: 15px;
-}
-
 .gamezone {
   background-image: url(../images/7153625.jpg);
   background-size: 75vw;
   display: flex;
-  height: 72vh;
+  height: 48vw;
   width: 75vw;
   border-radius: 18px;
-  margin: 35px 12.5vw 15px 12.5vw;
+  margin: 15px 12.5vw 15px 12.5vw;
   flex-direction: column;
 }
 
 h1 {
   margin: 150px 0px 0px 100px;
+  color: #345D30
 }
 
 #start {
   margin: 380px 25px 30px 780px;
   background-color: #345D30;
   border: none;
-  color: white;
+  color: #FFD486;
   padding: 15px 35px;
   text-align: center;
   font-size: 18px;
@@ -42,3 +36,9 @@ h1 {
 }
 
 #start:hover {opacity: 1}
+
+ul {
+  margin-left: 100px;
+  color: #345D30;
+  font-size: 20px
+}
