@@ -1,3 +1,28 @@
 body {
   background-color: blue;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0px;
+}
+
+#title {
+  display: flex;
+  justify-content: center;
+  color: white;
+  margin-top: 15px;
+}
+
+.gamezone {
+  background-image: url(../images/7153625.jpg);
+  background-size: 75vw;
+  display: flex;
+  height: 72vh;
+  width: 75vw;
+  border-radius: 18px;
+  margin: 15px 12.5vw 15px 12.5vw;
+}
+
+#name {
+  
 }
