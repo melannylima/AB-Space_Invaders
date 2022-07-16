@@ -13,7 +13,7 @@ body {
   height: 48vw;
   width: 75vw;
   border-radius: 18px;
-  margin: 15px 12.5vw 15px 12.5vw;
+  margin: 2vw 12.5vw 15px 12.5vw;
   flex-direction: column;
 }
 
@@ -23,7 +23,9 @@ h1 {
 }
 
 #start {
-  margin: 380px 25px 30px 780px;
+  position: absolute;
+  top: 45vw;
+  right: 15vw;
   background-color: #345D30;
   border: none;
   color: #FFD486;

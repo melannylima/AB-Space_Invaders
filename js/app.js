@@ -33,6 +33,15 @@ const instructions = () => {
   inst.appendChild(screenH)
   // attach unordered list to instruction screen
   inst.appendChild(instList)
+
+  // create next button
+  const next = document.createElement("BUTTON")
+  // give name to button
+  next.setAttribute("id", "start")
+  // give button text
+  next.innerHTML = "NEXT"
+  // attach button to instruction screen
+  inst.appendChild(next)
 }
 
 const startButton = document.getElementById("start")
