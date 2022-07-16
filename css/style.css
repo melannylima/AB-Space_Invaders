@@ -13,7 +13,7 @@ body {
   height: 48vw;
   width: 75vw;
   border-radius: 18px;
-  margin: 2vw 12.5vw 15px 12.5vw;
+  margin: 1vw 12.5vw 15px 12.5vw;
   flex-direction: column;
 }
 
@@ -22,7 +22,7 @@ h1 {
   color: #345D30
 }
 
-#start {
+button {
   position: absolute;
   top: 45vw;
   right: 15vw;
@@ -37,7 +37,7 @@ h1 {
   transition: 0.5s;
 }
 
-#start:hover {opacity: 1}
+button:hover {opacity: 1}
 
 ul {
   margin-left: 100px;

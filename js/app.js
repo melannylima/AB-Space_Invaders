@@ -37,11 +37,23 @@ const instructions = () => {
   // create next button
   const next = document.createElement("BUTTON")
   // give name to button
-  next.setAttribute("id", "start")
+  next.setAttribute("id", "next")
   // give button text
   next.innerHTML = "NEXT"
   // attach button to instruction screen
   inst.appendChild(next)
+
+  const nextButton = document.getElementById("next")
+  nextButton.addEventListener("click", letsPlay)
+}
+
+// instructions to play transition
+
+const letsPlay = () => {
+  // remove instructions screen
+  const inst = document.getElementById("inst")
+  inst.remove()
+  console.log(play);
 }
 
 const startButton = document.getElementById("start")
