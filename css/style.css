@@ -20,9 +20,25 @@ body {
   height: 72vh;
   width: 75vw;
   border-radius: 18px;
-  margin: 15px 12.5vw 15px 12.5vw;
+  margin: 35px 12.5vw 15px 12.5vw;
+  flex-direction: column;
 }
 
-#name {
-  
+h1 {
+  margin: 150px 0px 0px 100px;
 }
+
+#start {
+  margin: 380px 25px 30px 780px;
+  background-color: #345D30;
+  border: none;
+  color: white;
+  padding: 15px 35px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bolder;
+  opacity: .6;
+  transition: 0.5s;
+}
+
+#start:hover {opacity: 1}
