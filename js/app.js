@@ -60,13 +60,13 @@ const letsPlay = () => {
   // receive name for players 1 & 2
   const player1 = document.createElement("INPUT")
   const playerb1 = document.createElement("BUTTON")
-  const playZone = document.getElementById("play")
+  const playZone = document.getElementById("name")
   player1.setAttribute("type", "text")
-  playerb1.setAttribute("id", "pb")
+  playerb1.setAttribute("id", "pb1")
+  playerb1.setAttribute("class", "pb")
   player1.setAttribute("placeholder", "Player 1 Name")
   playerb1.innerHTML = "submit"
   player1.setAttribute("id", "p1")
-  player1.setAttribute("class", "p1")
   playZone.appendChild(player1)
   playZone.appendChild(playerb1)
   playerb1.addEventListener("click", player1Values)
@@ -74,28 +74,45 @@ const letsPlay = () => {
   const player2 = document.createElement("INPUT")
   const playerb2 = document.createElement("BUTTON")
   player2.setAttribute("type", "text")
-  playerb2.setAttribute("id", "pb")
+  playerb2.setAttribute("id", "pb2")
+  playerb2.setAttribute("class", "pb")
   player2.setAttribute("placeholder", "Player 2 Name")
   playerb2.innerHTML = "submit"
   player2.setAttribute("id", "p2")
-  player2.setAttribute("class", "p2")
   playZone.appendChild(player2)
   playZone.appendChild(playerb2)
-
   playerb2.addEventListener("click", player2Values)
   // demonstrate score for players 1 & 2
   // create players and allow them to move and "shoot"
   // impact
 }
 
+class Player {
+  constructor(name) {
+    this.health = 100;
+    this.name = name
+    this.score = 0
+  }
+}
+
 const player1Values = () => {
   const pName1 = document.getElementById("p1").value;
-  console.log(pName1);
+  const p1 = new Player(pName1)
+
+  const char = document.getElementById("p1")
+  const charB = document.getElementById("pb1")
+  char.remove()
+  charB.remove()
 }
 
 const player2Values = () => {
   const pName2 = document.getElementById("p2").value;
-  console.log(pName2);
+  const p2 = new Player(pName2)
+
+  const char = document.getElementById("p2")
+  const charB = document.getElementById("pb2")
+  char.remove()
+  charB.remove()
 }
 
 const startButton = document.getElementById("start")

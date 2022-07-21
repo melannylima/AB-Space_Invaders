@@ -57,7 +57,7 @@ ul {
   opacity: .7;
 }
 
-#play {
+#name {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -67,10 +67,12 @@ ul {
   top: 5vh;
 }
 
-#pb {
+.pb {
   color: white;
   background-color: blue;
   position: relative;
   top: -2.5vh;
   padding: 5px 7px;
 }
+
+.pb:hover {opacity: 1}
