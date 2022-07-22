@@ -83,15 +83,21 @@ const letsPlay = () => {
   playZone.appendChild(playerb2)
   playerb2.addEventListener("click", player2Values)
 
-  // create players and allow them to move and "shoot"
   // impact
 }
 
+// create players and allow them to move and "shoot"
 class Player {
   constructor(name) {
     this.health = 100;
     this.name = name
     this.score = 0
+  }
+  move() {
+    console.log("move");
+  }
+  shoot() {
+    console.log("something");
   }
 }
 
@@ -105,11 +111,19 @@ const player1Values = () => {
   charB.remove()
 
   // demonstrate score for player 1
-  const stat = document.getElementById("score")
-  stat.setAttribute("class", "stat")
+  const stat = document.getElementById("p1score")
+  stat.setAttribute("class", "stat1")
   const name = document.createElement("H2")
   name.innerHTML = p1.name
   stat.appendChild(name)
+
+  const score = document.createElement("H3")
+  score.innerHTML = `Score: ${p1.score}`
+  stat.appendChild(score)
+
+  const life = document.createElement("H3")
+  life.innerHTML = `Health: ${p1.health}`
+  stat.appendChild(life)
 }
 
 const player2Values = () => {
@@ -122,11 +136,19 @@ const player2Values = () => {
   charB.remove()
 
   // demonstrate score for player 2
-  const stat2 = document.getElementById("score")
-  stat2.setAttribute("class", "stat")
+  const stat2 = document.getElementById("p2score")
+  stat2.setAttribute("class", "stat2")
   const name = document.createElement("H2")
   name.innerHTML = p2.name
   stat2.appendChild(name)
+
+  const score2 = document.createElement("H3")
+  score2.innerHTML = `Score: ${p2.score}`
+  stat2.appendChild(score2)
+
+  const life2 = document.createElement("H3")
+  life2.innerHTML = `Health: ${p2.health}`
+  stat2.appendChild(life2)
 }
 
 const startButton = document.getElementById("start")
