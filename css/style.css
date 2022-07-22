@@ -76,3 +76,9 @@ ul {
 }
 
 .pb:hover {opacity: 1}
+
+.stat {
+  position: absolute;
+  left: 15vw;
+  top: 40vw;
+}

@@ -82,7 +82,7 @@ const letsPlay = () => {
   playZone.appendChild(player2)
   playZone.appendChild(playerb2)
   playerb2.addEventListener("click", player2Values)
-  // demonstrate score for players 1 & 2
+
   // create players and allow them to move and "shoot"
   // impact
 }
@@ -103,6 +103,13 @@ const player1Values = () => {
   const charB = document.getElementById("pb1")
   char.remove()
   charB.remove()
+
+  // demonstrate score for player 1
+  const stat = document.getElementById("score")
+  stat.setAttribute("class", "stat")
+  const name = document.createElement("H2")
+  name.innerHTML = p1.name
+  stat.appendChild(name)
 }
 
 const player2Values = () => {
@@ -113,6 +120,13 @@ const player2Values = () => {
   const charB = document.getElementById("pb2")
   char.remove()
   charB.remove()
+
+  // demonstrate score for player 2
+  const stat2 = document.getElementById("score")
+  stat2.setAttribute("class", "stat")
+  const name = document.createElement("H2")
+  name.innerHTML = p2.name
+  stat2.appendChild(name)
 }
 
 const startButton = document.getElementById("start")
