@@ -88,9 +88,9 @@ const letsPlay = () => {
 
 // create players and allow them to move and "shoot"
 class Player {
-  constructor(name) {
+  constructor() {
     this.health = 100;
-    this.name = name
+    this.name = ""
     this.score = 0
   }
   move() {
@@ -101,9 +101,12 @@ class Player {
   }
 }
 
+const p1 = new Player()
+const p2 = new Player()
+
 const player1Values = () => {
   const pName1 = document.getElementById("p1").value;
-  const p1 = new Player(pName1)
+  p1.name = pName1
 
   const char = document.getElementById("p1")
   const charB = document.getElementById("pb1")
@@ -124,11 +127,13 @@ const player1Values = () => {
   const life = document.createElement("H3")
   life.innerHTML = `Health: ${p1.health}`
   stat.appendChild(life)
+
+  playBall()
 }
 
 const player2Values = () => {
   const pName2 = document.getElementById("p2").value;
-  const p2 = new Player(pName2)
+  p2.name = pName2
 
   const char = document.getElementById("p2")
   const charB = document.getElementById("pb2")
@@ -150,6 +155,32 @@ const player2Values = () => {
   life2.innerHTML = `Health: ${p2.health}`
   stat2.appendChild(life2)
 }
+
+const playBall = () => {
+  const back = document.getElementById("play")
+  const cont = document.createElement("BUTTON")
+  cont.setAttribute("id", "cont")
+  cont.innerHTML = "CONTINUE"
+  back.appendChild(cont)
+
+  cont.addEventListener("click", begin)
+}
+
+const begin = () => {
+  const play2 = p2.name
+  const cont = document.getElementById("cont")
+
+  if (play2 == "") {
+    const char = document.getElementById("p2")
+    const charB = document.getElementById("pb2")
+
+    char.remove()
+    charB.remove()
+  }
+
+  cont.remove()
+}
+
 
 const startButton = document.getElementById("start")
 startButton.addEventListener("click", instructions)
