@@ -102,9 +102,8 @@ class Player {
     const play = document.getElementById("play")
     play.appendChild(coconut)
 
-    for (let i = 0; i < 12; i++) {
-      createEnemies()
-    }
+    createEnemies1()
+
 
     window.addEventListener("keydown", function cMove() {
       switch(event.code) {
@@ -240,13 +239,33 @@ const begin = () => {
 }
 
 
-const createEnemies = () => {
-  const en = document.getElementById("birds")
-  const bird = document.createElement("DIV")
-  bird.setAttribute("class", "bird")
-  bird.innerHTML = '<img src="images/bird.png" />'
-  en.appendChild(bird)
+
+
+const createEnemies1 = () => {
+  const canvas = document.createElement("CANVAS")
+  const can = document.getElementById("can")
+  can.appendChild(canvas)
+  canvas.setAttribute("id", "canvas")
+  canvas.setAttribute("width", "750")
+  const ctx = canvas.getContext("2d");
+
+  const birds = new Image(150, 20)
+  birds.src = 'images/bird.png'
+
+  birds.onload = function load() {
+    for(let i = 0; i < 3; i++) {
+      ctx.drawImage(birds, 0 + 200 * i, 5)
+    }
+    for(let i = 0; i < 3; i++) {
+      ctx.drawImage(birds, 0 + 200 * i, 100)
+    }
+    for(let i = 0; i < 3; i++) {
+      ctx.drawImage(birds, 0 + 200 * i, 150)
+    }
+  }
 }
+
+
 
 
 const startButton = document.getElementById("start")
