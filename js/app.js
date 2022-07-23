@@ -95,6 +95,32 @@ class Player {
   }
   move() {
     console.log("move");
+    const coconut = document.createElement("DIV")
+    coconut.setAttribute("id", "coconut")
+    coconut.innerHTML = '<img src="images/coconuts2.png" />';
+    const play = document.getElementById("play")
+    play.appendChild(coconut)
+
+    window.addEventListener("keydown", function cMove() {
+      switch(event.code) {
+        case "KeyA":
+        case "ArrowLeft":
+          moveLeft()
+          break;
+        case "KeyS":
+        case "ArrowRight":
+        moveRight()
+          break;
+      }
+    })
+    coconut.style.left = "47.5vw"
+    function moveLeft() {
+        coconut.style.left = parseInt(coconut.style.left) - 5 + "vw";
+    }
+    function moveRight() {
+        coconut.style.left = parseInt(coconut.style.left) + 5 + "vw";
+    }
+
   }
   shoot() {
     console.log("something");
@@ -176,6 +202,9 @@ const begin = () => {
 
     char.remove()
     charB.remove()
+
+    p1.move()
+
   }
 
   cont.remove()
