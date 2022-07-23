@@ -102,6 +102,10 @@ class Player {
     const play = document.getElementById("play")
     play.appendChild(coconut)
 
+    for (let i = 0; i < 12; i++) {
+      createEnemies()
+    }
+
     window.addEventListener("keydown", function cMove() {
       switch(event.code) {
         case "KeyA":
@@ -122,7 +126,7 @@ class Player {
         coconut.style.left = parseInt(coconut.style.left) + 5 + "vw";
     }
 
-    setTimeout(playTime(), 30000)
+    setTimeout(playBall(), 30000)
 
   }
   shoot() {
@@ -235,9 +239,13 @@ const begin = () => {
   cont.remove()
 }
 
-const playTime = () => {
 
-  playBall()
+const createEnemies = () => {
+  const en = document.getElementById("birds")
+  const bird = document.createElement("DIV")
+  bird.setAttribute("class", "bird")
+  bird.innerHTML = '<img src="images/bird.png" />'
+  en.appendChild(bird)
 }
 
 
