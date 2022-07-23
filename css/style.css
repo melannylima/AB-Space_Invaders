@@ -18,6 +18,9 @@ body {
 }
 
 h1 {
+  position: absolute;
+  top: 5vw;
+  left: 10vw;
   margin: 150px 0px 0px 100px;
   color: #345D30
 }
@@ -40,7 +43,9 @@ button {
 button:hover {opacity: 1}
 
 ul {
-  margin-left: 100px;
+  position: absolute;
+  top: 20vw;
+  left: 15vw;
   color: #345D30;
   font-size: 20px
 }
@@ -63,8 +68,9 @@ ul {
   justify-content: center;
   align-items: center;
   color: blue;
-  position: relative;
-  top: 5vh;
+  position: absolute;
+  top: 15vw;
+  left: 30vw;
 }
 
 .pb {

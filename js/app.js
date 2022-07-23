@@ -238,16 +238,17 @@ const begin = () => {
   cont.remove()
 }
 
-
+const canvas = document.createElement("CANVAS")
+const can = document.getElementById("can")
+can.appendChild(canvas)
+canvas.setAttribute("id", "canvas")
+canvas.setAttribute("width", "750")
+canvas.setAttribute("height", "550")
+const ctx = canvas.getContext("2d");
 
 
 const createEnemies1 = () => {
-  const canvas = document.createElement("CANVAS")
-  const can = document.getElementById("can")
-  can.appendChild(canvas)
-  canvas.setAttribute("id", "canvas")
-  canvas.setAttribute("width", "750")
-  const ctx = canvas.getContext("2d");
+
 
   const birds = new Image(150, 20)
   birds.src = 'images/bird.png'
@@ -265,7 +266,21 @@ const createEnemies1 = () => {
   }
 }
 
+const coco = () => {
+  const tCoco = new Image(50, 52)
+  tCoco.src = 'images/coconuts.png'
 
+  const lCoco = document.getElementById("coconut")
+  let location = lCoco.getBoundingClientRect()
+  const x = location.left;
+  const y = location.top;
+  console.log(x);
+  console.log(y);
+
+  tCoco.onload = function load() {
+    ctx.drawImage(tCoco, 400, 472.5)
+  }
+}
 
 
 const startButton = document.getElementById("start")
