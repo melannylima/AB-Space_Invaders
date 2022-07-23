@@ -59,7 +59,7 @@ ul {
   border-radius: 18px;
   margin: 1vw 12.5vw 15px 12.5vw;
   flex-direction: column;
-  opacity: .6;
+  /* opacity: .6; */
 }
 
 #name {

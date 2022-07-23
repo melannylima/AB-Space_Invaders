@@ -18,10 +18,11 @@ const instructions = () => {
   // create unordered list
   const instList = document.createElement("UL")
   // create list items
+  const story = document.create
   const firstL = document.createElement("LI")
-  firstL.innerHTML = "Example"
+  firstL.innerHTML = "Use your left and right arrow keys or a and d keys to move left and right"
   const secL = document.createElement("LI")
-  secL.innerHTML = "Example step 2"
+  secL.innerHTML = "Use W key or up arrow to shoot!"
   // append list items to unordered list
   instList.appendChild(firstL)
   instList.appendChild(secL)
@@ -111,7 +112,7 @@ class Player {
         case "ArrowLeft":
           moveLeft()
           break;
-        case "KeyS":
+        case "KeyD":
         case "ArrowRight":
         moveRight()
           break;
@@ -130,6 +131,15 @@ class Player {
   }
   shoot() {
     console.log("something");
+
+    window.addEventListener("keydown", function cShoot() {
+      switch(event.code) {
+        case "KeyW":
+        case "ArrowUp":
+          coco()
+          break;
+      }
+    })
   }
 }
 
@@ -213,6 +223,7 @@ const begin = () => {
     charB.remove()
 
     p1.move()
+    p1.shoot()
 
   } else {
 
@@ -220,16 +231,20 @@ const begin = () => {
       const play1 = document.getElementById("coconut")
       play1.remove()
       p1.move()
+      p1.shoot()
       turn = !turn
       p1.count = p1.count +=1
     } else if (turn) {
       p1.move()
+      p1.shoot()
       turn = !turn
       p1.count = p1.count +=1
     } else {
       const play1 = document.getElementById("coconut")
       play1.remove()
       p2.move()
+      p2.shoot()// console.log(x);
+  // console.log(y);
       turn = !turn
       p2.count = p2.count +=1
     }
@@ -245,6 +260,7 @@ canvas.setAttribute("id", "canvas")
 canvas.setAttribute("width", "750")
 canvas.setAttribute("height", "550")
 const ctx = canvas.getContext("2d");
+
 
 
 const createEnemies1 = () => {
@@ -267,19 +283,42 @@ const createEnemies1 = () => {
 }
 
 const coco = () => {
-  const tCoco = new Image(50, 52)
-  tCoco.src = 'images/coconuts.png'
+
 
   const lCoco = document.getElementById("coconut")
   let location = lCoco.getBoundingClientRect()
-  const x = location.left;
-  const y = location.top;
-  console.log(x);
-  console.log(y);
+  let lx = location.left - 165;
+  let ly = location.top - 15;
+  // console.log(lx);
+  // console.log(ly);
 
-  tCoco.onload = function load() {
-    ctx.drawImage(tCoco, 400, 472.5)
+  let x = lx
+  let y = canvas.height - 50
+  let dx = 0;
+  let dy = -2;
+
+  const tCoco = new Image(50, 52)
+  tCoco.src = 'images/coconuts.png'
+
+  function load() {
+    // ctx.translate(0, -300)
+    // ctx.drawImage(tCoco, x, y)
+    // window.requestAnimationFrame(load)
+
+    ctx.beginPath();
+    ctx.arc(x, y, 10, 0, Math.PI*2);
+    ctx.fillStyle = "#964B00";
+    ctx.fill();
+    ctx.closePath();
+
   }
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    load()
+    x += dx;
+    y += dy;
+  }
+  setInterval(draw, 10)
 }
 
 
