@@ -92,9 +92,10 @@ class Player {
     this.health = 100;
     this.name = ""
     this.score = 0
+    this.count = 0
   }
   move() {
-    console.log("move");
+    console.log(`move ${this.name}`);
     const coconut = document.createElement("DIV")
     coconut.setAttribute("id", "coconut")
     coconut.innerHTML = '<img src="images/coconuts2.png" />';
@@ -113,13 +114,15 @@ class Player {
           break;
       }
     })
-    coconut.style.left = "47.5vw"
+    coconut.style.left = "46.5vw"
     function moveLeft() {
         coconut.style.left = parseInt(coconut.style.left) - 5 + "vw";
     }
     function moveRight() {
         coconut.style.left = parseInt(coconut.style.left) + 5 + "vw";
     }
+
+    setTimeout(playTime(), 30000)
 
   }
   shoot() {
@@ -190,7 +193,10 @@ const playBall = () => {
   back.appendChild(cont)
 
   cont.addEventListener("click", begin)
+
 }
+
+let turn = true
 
 const begin = () => {
   const play2 = p2.name
@@ -205,9 +211,33 @@ const begin = () => {
 
     p1.move()
 
+  } else {
+
+    if (turn && p1.count > 0) {
+      const play1 = document.getElementById("coconut")
+      play1.remove()
+      p1.move()
+      turn = !turn
+      p1.count = p1.count +=1
+    } else if (turn) {
+      p1.move()
+      turn = !turn
+      p1.count = p1.count +=1
+    } else {
+      const play1 = document.getElementById("coconut")
+      play1.remove()
+      p2.move()
+      turn = !turn
+      p2.count = p2.count +=1
+    }
   }
 
   cont.remove()
+}
+
+const playTime = () => {
+
+  playBall()
 }
 
 
