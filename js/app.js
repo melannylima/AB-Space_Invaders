@@ -303,8 +303,8 @@ let bird;
 
 // makes the birds
 const makeBirds = () => {
-  bird = new component(120, 50, "images/bird.png", 500, 50, "image");
-  setInterval(updateGame, 20);
+  bird = new component(120, 50, "images/bird.png", 500, 5, "image");
+  setInterval(updateGame, 15);
   console.log("bird");
 
 
@@ -326,6 +326,9 @@ const makeBirds = () => {
 }
 
 // shoots "coconuts"
+let tCoco;
+let axisX
+let axisY
 const coco = () => {
 
 
@@ -355,11 +358,22 @@ const coco = () => {
     // ctx.fill();
     ctx.closePath();
 
-    const tCoco  = new component(50, 50, "images/coconuts.png", x, y, "image");
+    tCoco  = new component(30, 30, "images/coconuts.png", x, y, "image");
     tCoco.newPos()
     tCoco.update()
 
   }
+
+  const newValue = () => {
+    y = y
+    axisY = y + 50
+  }
+
+  setInterval(newValue, 50)
+
+  axisX = x + 50
+
+
 
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -369,25 +383,30 @@ const coco = () => {
   }
   setInterval(draw, 10)
 
-  // impact()
+  setInterval(impact, 10)
 }
 
-// // collision recognition
-// const impact = () => {
-//   let birdXRight = bird.x + bird.width
-//   let cocoXRight = x
-//   let birdYBottom = bird.y + bird.height
-//   let cocoYBottom = y
-//
-//   const overlapX = (bird.x <= cocoXRight && bird.x >= coco.x) ||
-//     (birdXRight <= cocoXRight && birdXRight >= coco.x);
-//   const overlapY = (bird.y <= cocoYBottom && bird.y >= coco.y) ||
-//      (birdYBottom <= cocoYBottom && birdYBottom >= coco.y);
-//   const isColliding = overlapX && overlapY;
-//   if (isColliding) {
-//     console.log("It hit!!");
-//   }
-// }
+// collision recognition
+const impact = () => {
+  // let birdXRight = bird.x + bird.width
+  // let cocoXRight = axisX
+  // let birdYBottom = bird.y + bird.height
+  // let cocoYBottom = axisY
+
+  // const overlapX = (bird.x <= cocoXRight && bird.x >= tCoco.x) ||
+  //   (birdXRight <= cocoXRight && birdXRight >= tCoco.x);
+  // const overlapY = (bird.y <= cocoYBottom && bird.y >= tCoco.y) ||
+  //    (birdYBottom <= cocoYBottom && birdYBottom >= tCoco.y);
+  // const isColliding = overlapX && overlapY;
+
+  if((axisX > bird.x) && (axisX < bird.x+bird.width) && (axisY > bird.y) && (axisY < bird.y + bird.height)) {
+                    console.log("it hit");
+                }
+
+  // if (isColliding) {
+  //   console.log("It hit!!");
+  // }
+}
 
 // starts the whole sequence
 const startButton = document.getElementById("start")
