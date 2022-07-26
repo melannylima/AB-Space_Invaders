@@ -23,9 +23,12 @@ const instructions = () => {
   firstL.innerHTML = "Use your left and right arrow keys or a and d keys to move left and right"
   const secL = document.createElement("LI")
   secL.innerHTML = "Use W key or up arrow to shoot!"
+  const thiL = document.createElement("LI")
+  thiL.innerHTML = "Each round lasts 60 seconds"
   // append list items to unordered list
   instList.appendChild(firstL)
   instList.appendChild(secL)
+  instList.appendChild(thiL)
 
   // get the instruction screen
   const inst = document.getElementById("inst")
@@ -211,6 +214,13 @@ const playBall = () => {
 
 }
 
+const timer = () => {
+  let count = 60, timer = setInterval(function() {
+    $("#counter").html(count--);
+    if(count == 1) clearInterval(timer);
+}, 1000);
+}
+
 let turn = true
 
 // taking turns
@@ -228,6 +238,22 @@ const begin = () => {
     p1.move()
     p1.shoot()
 
+  } if (p1.count == 1 && p2.count == 1) {
+    const playField = document.getElementById("canvas")
+    playField.remove()
+    const winner = document.createElement("H1")
+    const canvas = document.getElementById("can")
+
+    if (p1.score > p2.score) {
+      winner.innerHTML = `${p1.name} wins!`
+      canvas.appendChild(winner)
+    } else if (p1.score < p2.score) {
+      winner.innerHTML = `${p2.name} wins!`
+      canvas.appendChild(winner)
+    } else {
+      winner.innerHTML = `It's a tie!`
+      canvas.appendChild(winner)
+    }
   } else {
 
     if (turn && p1.count > 0) {
@@ -237,6 +263,8 @@ const begin = () => {
       p1.shoot()
       turn = !turn
       p1.count = p1.count +=1
+
+
     } else if (turn) {
       p1.move()
       p1.shoot()
@@ -307,6 +335,8 @@ let birds = []
 // makes the birds
 const makeBirds = () => {
 
+  let birdCount
+
   const printBird = () => {
     for (i = 0; i < 1; i++) {
       let xl = Math.floor(Math.random() * 5) * 150
@@ -315,9 +345,15 @@ const makeBirds = () => {
       setInterval(updateGame, 15);
       birds[i] = bird
       console.log("bird");
+      birdCount = birdCount +=1
+      if (birdCount >= 12) {
+        clearInterval(creator)
+      }
     }
   }
-  setInterval(printBird, 5000)
+  let creator = setInterval(printBird, 5000)
+
+
 
 
   // const birdD = new Image(150, 20)
