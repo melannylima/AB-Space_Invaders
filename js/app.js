@@ -163,6 +163,7 @@ const player1Values = () => {
   stat.appendChild(name)
 
   const score = document.createElement("H3")
+  score.setAttribute("id", "p1Score")
   score.innerHTML = `Score: ${p1.score}`
   stat.appendChild(score)
 
@@ -190,6 +191,7 @@ const player2Values = () => {
   stat2.appendChild(name)
 
   const score2 = document.createElement("H3")
+  score2.setAttribute("id", "p2Score")
   score2.innerHTML = `Score: ${p2.score}`
   stat2.appendChild(score2)
 
@@ -216,7 +218,7 @@ const begin = () => {
   const play2 = p2.name
   const cont = document.getElementById("cont")
 
-  if (play2 == "") {
+  if (play2.length <= 0 && p1.count == 0) {
     const char = document.getElementById("p2")
     const charB = document.getElementById("pb2")
 
@@ -261,7 +263,7 @@ can.appendChild(canvas)
 canvas.setAttribute("id", "canvas")
 canvas.setAttribute("width", "1000")
 canvas.setAttribute("height", "500")
-const ctx = canvas.getContext("2d");
+let ctx = canvas.getContext("2d");
 
 // function for birds & movement
 function component (width, height, color, x, y, type) {
@@ -300,13 +302,22 @@ function updateGame() {
 }
 
 let bird;
+let birds = []
 
 // makes the birds
 const makeBirds = () => {
-  bird = new component(120, 50, "images/bird.png", 500, 5, "image");
-  setInterval(updateGame, 15);
-  console.log("bird");
 
+  const printBird = () => {
+    for (i = 0; i < 1; i++) {
+      let xl = Math.floor(Math.random() * 5) * 150
+      let yl = Math.floor(Math.random() * 3) * 50
+      bird = new component(120, 50, "images/bird.png", xl, yl, "image");
+      setInterval(updateGame, 15);
+      birds[i] = bird
+      console.log("bird");
+    }
+  }
+  setInterval(printBird, 5000)
 
 
   // const birdD = new Image(150, 20)
@@ -383,7 +394,7 @@ const coco = () => {
   }
   setInterval(draw, 10)
 
-  setInterval(impact, 10)
+  setInterval(impact, 300)
 }
 
 // collision recognition
@@ -400,12 +411,21 @@ const impact = () => {
   // const isColliding = overlapX && overlapY;
 
   if((axisX > bird.x) && (axisX < bird.x+bird.width) && (axisY > bird.y) && (axisY < bird.y + bird.height)) {
-                    console.log("it hit");
-                }
+    console.log("it hit");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (turn) {
+      p1.score = p1.score + 100
+      const score = document.getElementById("p1Score")
+      score.innerHTML = `Score: ${p1.score}`
+    } else if (p2.name = "") {
+      return p1.score
+    } else {
+      p2.score = p2.score + 100
+      const score = document.getElementById("p2Score")
+      score.innerHTML = `Score: ${p2.score}`
+    }
+  }
 
-  // if (isColliding) {
-  //   console.log("It hit!!");
-  // }
 }
 
 // starts the whole sequence
