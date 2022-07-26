@@ -116,6 +116,14 @@ ul {
   /* left: 47.5vw; */
 }
 
+#count {
+  color: red;
+  position: absolute;
+  top: 3vw;
+  right: 15vw;
+  size: 2vw;
+}
+
 /* #birds {
   max-width: 50vw;
   display: flex;

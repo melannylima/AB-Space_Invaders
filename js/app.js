@@ -134,6 +134,7 @@ class Player {
   }
   shoot() {
     console.log("something");
+    timer()
 
     window.addEventListener("keydown", function cShoot() {
       switch(event.code) {
@@ -214,10 +215,20 @@ const playBall = () => {
 
 }
 
+const timeD = document.getElementById("timer")
+const counter = document.createElement("H2")
+counter.setAttribute("id", "count")
+
 const timer = () => {
+  // const timeD = document.getElementById("timer")
+  // const counter = document.createElement("H2")
+  // counter.setAttribute("id", "count")
+
   let count = 60, timer = setInterval(function() {
-    $("#counter").html(count--);
-    if(count == 1) clearInterval(timer);
+    counter.innerHTML = count
+    count--
+    timeD.appendChild(counter)
+    if(count == -1) clearInterval(timer);
 }, 1000);
 }
 
@@ -247,12 +258,15 @@ const begin = () => {
     if (p1.score > p2.score) {
       winner.innerHTML = `${p1.name} wins!`
       canvas.appendChild(winner)
+      counter.remove()
     } else if (p1.score < p2.score) {
       winner.innerHTML = `${p2.name} wins!`
       canvas.appendChild(winner)
+      counter.remove()
     } else {
       winner.innerHTML = `It's a tie!`
       canvas.appendChild(winner)
+      counter.remove()
     }
   } else {
 
