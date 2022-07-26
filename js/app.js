@@ -211,6 +211,7 @@ const playBall = () => {
 
 let turn = true
 
+// taking turns
 const begin = () => {
   const play2 = p2.name
   const cont = document.getElementById("cont")
@@ -253,6 +254,7 @@ const begin = () => {
   cont.remove()
 }
 
+// creating canvas
 const canvas = document.createElement("CANVAS")
 const can = document.getElementById("can")
 can.appendChild(canvas)
@@ -261,7 +263,8 @@ canvas.setAttribute("width", "1000")
 canvas.setAttribute("height", "500")
 const ctx = canvas.getContext("2d");
 
-function component(width, height, color, x, y, type) {
+// function for birds & movement
+function component (width, height, color, x, y, type) {
     this.type = type;
     if (type == "image") {
         this.image = new Image();
@@ -298,6 +301,7 @@ function updateGame() {
 
 let bird;
 
+// makes the birds
 const makeBirds = () => {
   bird = new component(120, 50, "images/bird.png", 500, 50, "image");
   setInterval(updateGame, 20);
@@ -321,6 +325,7 @@ const makeBirds = () => {
   // }
 }
 
+// shoots "coconuts"
 const coco = () => {
 
 
@@ -336,8 +341,8 @@ const coco = () => {
   let dx = 0;
   let dy = -2;
 
-  const tCoco = new Image(50, 52)
-  tCoco.src = 'images/coconuts.png'
+  // const tCoco = new Image(50, 52)
+  // tCoco.src = 'images/coconuts.png'
 
   function load() {
     // ctx.translate(0, -300)
@@ -346,11 +351,16 @@ const coco = () => {
 
     ctx.beginPath();
     ctx.arc(x, y, 10, 0, Math.PI*2);
-    ctx.fillStyle = "#964B00";
-    ctx.fill();
+    // ctx.fillStyle = "#964B00";
+    // ctx.fill();
     ctx.closePath();
 
+    const tCoco  = new component(50, 50, "images/coconuts.png", x, y, "image");
+    tCoco.newPos()
+    tCoco.update()
+
   }
+
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     load()
@@ -358,8 +368,27 @@ const coco = () => {
     y += dy;
   }
   setInterval(draw, 10)
+
+  // impact()
 }
 
+// // collision recognition
+// const impact = () => {
+//   let birdXRight = bird.x + bird.width
+//   let cocoXRight = x
+//   let birdYBottom = bird.y + bird.height
+//   let cocoYBottom = y
+//
+//   const overlapX = (bird.x <= cocoXRight && bird.x >= coco.x) ||
+//     (birdXRight <= cocoXRight && birdXRight >= coco.x);
+//   const overlapY = (bird.y <= cocoYBottom && bird.y >= coco.y) ||
+//      (birdYBottom <= cocoYBottom && birdYBottom >= coco.y);
+//   const isColliding = overlapX && overlapY;
+//   if (isColliding) {
+//     console.log("It hit!!");
+//   }
+// }
 
+// starts the whole sequence
 const startButton = document.getElementById("start")
 startButton.addEventListener("click", instructions)
