@@ -103,7 +103,7 @@ class Player {
     const play = document.getElementById("play")
     play.appendChild(coconut)
 
-    createEnemies1()
+    makeBirds()
 
 
     window.addEventListener("keydown", function cMove() {
@@ -257,29 +257,68 @@ const canvas = document.createElement("CANVAS")
 const can = document.getElementById("can")
 can.appendChild(canvas)
 canvas.setAttribute("id", "canvas")
-canvas.setAttribute("width", "750")
-canvas.setAttribute("height", "550")
+canvas.setAttribute("width", "1000")
+canvas.setAttribute("height", "500")
 const ctx = canvas.getContext("2d");
 
-
-
-const createEnemies1 = () => {
-
-
-  const birds = new Image(150, 20)
-  birds.src = 'images/bird.png'
-
-  birds.onload = function load() {
-    for(let i = 0; i < 3; i++) {
-      ctx.drawImage(birds, 0 + 200 * i, 5)
+function component(width, height, color, x, y, type) {
+    this.type = type;
+    if (type == "image") {
+        this.image = new Image();
+        this.image.src = color;
     }
-    for(let i = 0; i < 3; i++) {
-      ctx.drawImage(birds, 0 + 200 * i, 100)
+    this.width = width;
+    this.height = height;
+    this.speedX = 0;
+    this.speedY = 0;
+    this.x = x;
+    this.y = y;
+    this.update = function() {
+        if (type == "image") {
+            ctx.drawImage(this.image,
+                this.x,
+                this.y,
+                this.width, this.height);
+        } else {
+            ctx.fillStyle = color;
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
     }
-    for(let i = 0; i < 3; i++) {
-      ctx.drawImage(birds, 0 + 200 * i, 150)
+    this.newPos = function() {
+        this.x += this.speedX;
+        this.y += this.speedY;
     }
-  }
+}
+
+function updateGame() {
+
+    bird.newPos();
+    bird.update();
+}
+
+let bird;
+
+const makeBirds = () => {
+  bird = new component(120, 50, "images/bird.png", 500, 50, "image");
+  setInterval(updateGame, 20);
+  console.log("bird");
+
+
+
+  // const birdD = new Image(150, 20)
+  // birdD.src = 'images/bird.png'
+  //
+  // birds.onload = function load() {
+  //   for(let i = 0; i < 3; i++) {
+  //     ctx.drawImage(birds, 0 + 200 * i, 5)
+  //   }
+  //   for(let i = 0; i < 3; i++) {
+  //     ctx.drawImage(birds, 0 + 200 * i, 100)
+  //   }
+  //   for(let i = 0; i < 3; i++) {
+  //     ctx.drawImage(birds, 0 + 200 * i, 150)
+  //   }
+  // }
 }
 
 const coco = () => {
